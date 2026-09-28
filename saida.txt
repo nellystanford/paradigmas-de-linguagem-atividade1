@@ -1,0 +1,33 @@
+1. Cadastro de produtos
+  [0] Arroz 5kg | Preço: R$ 28,90 | Quantidade: 10
+  [1] Detergente 500ml | Preço: R$ 2,49 | Quantidade: 30
+  [2] Leite integral 1L | Preço: R$ 5,79 | Quantidade: 20 | Vence em 2 dia(s) (desconto automático de 20% no valor total)
+  [3] Iogurte natural | Preço: R$ 3,50 | Quantidade: 15 | Vence em 10 dia(s)
+
+2. Tentativa de cadastro com quantidade negativa
+QuantidadeInvalidaException capturada: Quantidade inválida para "Feijão 1kg": -5. A quantidade não pode ser negativa.
+
+3. Venda válida
+Venda realizada: 4 unidade(s) de Arroz 5kg.
+  Situação atual: Arroz 5kg | Preço: R$ 28,90 | Quantidade: 6
+
+4. Venda acima do estoque disponível
+ProdutoIndisponivelException capturada: Estoque insuficiente de "Leite integral 1L": pedido de 50 unidade(s), mas só há 20 disponível(is).
+
+5. Sobrecarga de aplicarDesconto()
+aplicarDesconto(10)       -> Detergente 500ml | Preço: R$ 2,24 | Quantidade: 30
+aplicarDesconto(50, 5.00) -> Arroz 5kg | Preço: R$ 23,90 | Quantidade: 6  (50% daria R$ 14,45, mas o teto é R$ 5,00)
+
+6. Vários catches no mesmo try (do mais específico ao mais genérico)
+Pedido de Café 500g concluído.
+QuantidadeInvalidaException: Quantidade inválida para "Açúcar 1kg": -2. A quantidade não pode ser negativa.
+ProdutoIndisponivelException: Estoque insuficiente de "Farinha 1kg": pedido de 12 unidade(s), mas só há 5 disponível(is).
+
+7. Valor total do estoque
+  ProdutoComum       Arroz 5kg                R$   143,40
+  ProdutoComum       Detergente 500ml         R$    67,23
+  ProdutoPerecivel   Leite integral 1L        R$    92,64
+  ProdutoPerecivel   Iogurte natural          R$    52,50
+  ProdutoComum       Café 500g                R$    89,50
+  ProdutoComum       Farinha 1kg              R$    32,45
+  TOTAL                                       R$   477,72
